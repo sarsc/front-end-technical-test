@@ -10,30 +10,20 @@ export const Title = styled.h1`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column; 
+  align-items: center;
   padding-top: 100px;
-
 `
 export const Nav = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
   padding: 20px;
-
   border-bottom: 1px solid black;
-
-  a {
-    position: absolute;
-    right: 40px;
-    background-color: #e68217;
-    padding: 8px 6px;
-    border-radius: 4px;
-    text-decoration: none; 
-  }
 `
 export const BeerList = styled.div`
   display: grid;
-
+  margin-top: 50px;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -57,4 +47,15 @@ export const BeerContainer = styled.div`
 export const BeerInfo =  styled.div`
   padding: 20px;
   font-size: 18px;
+`
+export const Button =  styled.div`
+  background-color: #e68217;
+  padding: 8px 6px;
+  border-radius: 4px;
+  text-align: center;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
 `

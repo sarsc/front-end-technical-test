@@ -8,15 +8,15 @@ import {
 
 
 export default () => {
-  const [selectedBeer, setSelectedBeer] = useState([])
+  const [randomBeer, setRandomBeer] = useState([])
 
   useEffect(() => {
-    fetch('https://api.punkapi.com/v2/beers/8').
+    fetch('https://api.punkapi.com/v2/beers/random').
     then(res => {
       return res.json()
     })
     .then((data) => {
-      setSelectedBeer(data[0])
+      setRandomBeer(data[0])
     })
   }, [])
 
@@ -24,7 +24,7 @@ export default () => {
     <React.Fragment>
       <Title>Punk Api</Title>
       <Container>
-          <Beer selectedBeer={selectedBeer}/>
+        <Beer selectedBeer={randomBeer}/>
       </Container>
     </React.Fragment>
   );

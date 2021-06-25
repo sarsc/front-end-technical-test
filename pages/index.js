@@ -10,11 +10,13 @@ import {
   BeerContainer,
   BeerInfo,
   Nav,
+  Button
 } from '../index.styled'
 
 
 export default function Home() {
   const [beerList, setBeerList] = useState([])
+  const [selectedBeer, setSelectedBeer] = useState(null)
 
     useEffect(() => {
       fetch('https://api.punkapi.com/v2/beers').
@@ -30,19 +32,31 @@ export default function Home() {
       <React.Fragment>
         <Nav>
           <Title>Punk Api</Title>
-          <Link href="/beer">
-            <a>Random Beer</a>
-          </Link>
         </Nav>
         <Container>
-          <BeerList>{beerList.map(b => (
+          <Button
+            buttonType="randomBeer"
+          >
+            <Link href="/randomBeer">
+              Random Beer
+            </Link>
+          </Button>
+          <BeerList>{beerList.map(beer => (
             <BeerContainer>
-              <img src={b.image_url} alt="beer" >
-                {/* <Link href=""/> */}
-              </img>
+              <img src={beer.image_url} alt="beer" />
               <div>
-                <BeerInfo key={b.id} >{b.name}</BeerInfo>
-                <BeerInfo key={b.id} >{b.tagline}</BeerInfo>
+                <BeerInfo key={beer.id} >{beer.name}</BeerInfo>
+                <BeerInfo key={beer.id} >{beer.tagline}</BeerInfo>
+                <Button
+                  onClick={() => setSelectedBeer(beer.id)}
+                >
+                 <Link href={{
+                   pathname: "/beer",
+                   state: {
+                     selectedBeer
+                   }
+                 }}>Go to Beer</Link>
+                </Button>
               </div>
             </BeerContainer>
             ))}
